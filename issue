@@ -1,0 +1,57 @@
+Every minute I have this error in Nextcloud :
+
+====================================================================
+Fatal webdav Sabre\DAV\Exception\ServiceUnavailable: HTTP/1.1 503 OC\User\LoginException: Пользователь отключен 2017-08-10T12:52:52+0200
+
+Error no app in context OC\User\LoginException: Пользователь отключен 2017-08-10T12:52:52+0200
+
+=====================================================================
+#Server configuration
+
+Operating system:
+CentOS 7.3
+
+Web server:
+Apache 2.4.18
+
+Database:
+MySQL 5.7.17
+
+PHP version:
+7.0.13
+
+Nextcloud version: 12
+
+==================================
+/home/shareitak/public_html/3rdparty/sabre/dav/lib/DAV/Auth/Plugin.php - line 201: OCA\DAV\Connector\Sabre\Auth->check(Object(Sabre\HTTP\Request), Object(Sabre\HTTP\Response))
+/home/shareitak/public_html/3rdparty/sabre/dav/lib/DAV/Auth/Plugin.php - line 150: Sabre\DAV\Auth\Plugin->check(Object(Sabre\HTTP\Request), Object(Sabre\HTTP\Response))
+[internal function] Sabre\DAV\Auth\Plugin->beforeMethod(Object(Sabre\HTTP\Request), Object(Sabre\HTTP\Response))
+/home/shareitak/public_html/3rdparty/sabre/event/lib/EventEmitterTrait.php - line 105: call_user_func_array(Array, Array)
+/home/shareitak/public_html/3rdparty/sabre/dav/lib/DAV/Server.php - line 466: Sabre\Event\EventEmitter->emit(‘beforeMethod’, Array)
+/home/shareitak/public_html/3rdparty/sabre/dav/lib/DAV/Server.php - line 254: Sabre\DAV\Server->invokeMethod(Object(Sabre\HTTP\Request), Object(Sabre\HTTP\Response))
+/home/shareitak/public_html/apps/dav/appinfo/v1/webdav.php - line 71: Sabre\DAV\Server->exec()
+/home/shareitak/public_html/remote.php - line 162: require_once(’/home/shareitak…’)
+{main}
+
+==========================
+OC\User\LoginException: Пользователь отключен
+
+/home/shareitak/public_html/lib/private/User/Session.php - line 547: OC\User\Session->completeLogin(*** sensitive parameters replaced )
+/home/shareitak/public_html/lib/private/User/Session.php - line 326: OC\User\Session->loginWithPassword( sensitive parameters replaced )
+/home/shareitak/public_html/lib/private/User/Session.php - line 400: OC\User\Session->login( sensitive parameters replaced )
+/home/shareitak/public_html/apps/dav/lib/Connector/Sabre/Auth.php - line 129: OC\User\Session->logClientIn( sensitive parameters replaced )
+/home/shareitak/public_html/3rdparty/sabre/dav/lib/DAV/Auth/Backend/AbstractBasic.php - line 105: OCA\DAV\Connector\Sabre\Auth->validateUserPass( sensitive parameters replaced ***)
+/home/shareitak/public_html/apps/dav/lib/Connector/Sabre/Auth.php - line 252: Sabre\DAV\Auth\Backend\AbstractBasic->check(Object(Sabre\HTTP\Request), Object(Sabre\HTTP\Response))
+/home/shareitak/public_html/apps/dav/lib/Connector/Sabre/Auth.php - line 154: OCA\DAV\Connector\Sabre\Auth->auth(Object(Sabre\HTTP\Request), Object(Sabre\HTTP\Response))
+/home/shareitak/public_html/3rdparty/sabre/dav/lib/DAV/Auth/Plugin.php - line 201: OCA\DAV\Connector\Sabre\Auth->check(Object(Sabre\HTTP\Request), Object(Sabre\HTTP\Response))
+/home/shareitak/public_html/3rdparty/sabre/dav/lib/DAV/Auth/Plugin.php - line 150: Sabre\DAV\Auth\Plugin->check(Object(Sabre\HTTP\Request), Object(Sabre\HTTP\Response))
+[internal function] Sabre\DAV\Auth\Plugin->beforeMethod(Object(Sabre\HTTP\Request), Object(Sabre\HTTP\Response))
+/home/shareitak/public_html/3rdparty/sabre/event/lib/EventEmitterTrait.php - line 105: call_user_func_array(Array, Array)
+/home/shareitak/public_html/3rdparty/sabre/dav/lib/DAV/Server.php - line 466: Sabre\Event\EventEmitter->emit('beforeMethod', Array)
+/home/shareitak/public_html/3rdparty/sabre/dav/lib/DAV/Server.php - line 254: Sabre\DAV\Server->invokeMethod(Object(Sabre\HTTP\Request), Object(Sabre\HTTP\Response))
+/home/shareitak/public_html/apps/dav/appinfo/v1/webdav.php - line 71: Sabre\DAV\Server->exec()
+/home/shareitak/public_html/remote.php - line 162: require_once('/home/shareitak...')
+{main}
+
+==========================
+Thanks for help.
